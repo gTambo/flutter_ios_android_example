@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:ios_android_example/platform_widgets/android/elevated_button.dart';
+import 'package:ios_android_example/platform_widgets/iOS/button.dart';
 import 'package:ios_android_example/constants/constants.dart';
 import 'dart:io' show Platform;
 import 'date_page.dart';
@@ -15,6 +17,12 @@ class TextPage extends StatefulWidget {
 
 class _TextPageState extends State<TextPage> {
   String inputText = '';
+  // void nextPage(Widget route) {
+  //   Navigator.of(context).push(MaterialPageRoute(builder: (context) {
+  //     return route;
+  //   }));
+  // }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -64,7 +72,15 @@ class _TextPageState extends State<TextPage> {
             const SizedBox(
               height: 15,
             ),
-            Platform.isIOS ? const IOSButton() : const AndroidElevatedButton()
+            Platform.isIOS
+                ? IOSButton(
+                    label: 'NEXT',
+                    onPressed: () => nextPage(context, const DatePage()),
+                  )
+                : AndroidElevatedButton(
+                    label: 'next',
+                    onPressed: () => nextPage(context, const DatePage()),
+                  ),
           ],
         ),
       ),
@@ -103,50 +119,6 @@ class IOSTextField extends StatelessWidget {
       onChanged: (newText) {
         setText(newText);
       },
-    );
-  }
-}
-
-class AndroidElevatedButton extends StatelessWidget {
-  const AndroidElevatedButton({
-    super.key,
-  });
-
-  @override
-  Widget build(BuildContext context) {
-    return ElevatedButton(
-      onPressed: () {
-        // TODO replace with navigation
-        print('pressed material button');
-      },
-      child: Text(
-        'next'.toUpperCase(),
-      ),
-    );
-  }
-}
-
-class IOSButton extends StatelessWidget {
-  const IOSButton({super.key});
-
-  @override
-  Widget build(BuildContext context) {
-    return CupertinoButton.filled(
-      // color: Colors.white,
-      onPressed: () {
-        // TODO replace with navigation
-        print('pressed iOS button');
-        Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-          return DatePage();
-        }));
-      },
-      child: const Text(
-        'NEXT',
-        style: TextStyle(
-          fontWeight: FontWeight.bold,
-          // color: Colors.blue,
-        ),
-      ),
     );
   }
 }
