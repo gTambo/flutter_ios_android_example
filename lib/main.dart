@@ -23,21 +23,45 @@ class MyApp extends StatelessWidget {
           child: Icon(Icons.add),
           onPressed: () {},
         ),
-        body: Column(
-          children: [
-            TextField(),
-            Text('get this from the text field'),
-            ElevatedButton(
-              onPressed: () {
-                print('pressed button');
-              },
-              child: Text(
-                'button'.toUpperCase(),
-              ),
-            )
-          ],
-        ),
+        body: BodyWidget(),
       ),
+    );
+  }
+}
+
+class BodyWidget extends StatefulWidget {
+  const BodyWidget({
+    super.key,
+  });
+
+  @override
+  State<BodyWidget> createState() => _BodyWidgetState();
+}
+
+class _BodyWidgetState extends State<BodyWidget> {
+  String inputText = 'get this from the text field';
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      children: [
+        TextField(
+          textAlign: TextAlign.center,
+          onChanged: (newText) {
+            setState(() {
+              inputText = newText;
+            });
+          },
+        ),
+        Text(inputText),
+        ElevatedButton(
+          onPressed: () {
+            print('pressed button');
+          },
+          child: Text(
+            'button'.toUpperCase(),
+          ),
+        )
+      ],
     );
   }
 }
