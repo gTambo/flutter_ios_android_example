@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:ios_android_example/constants/constants.dart';
+import 'package:ios_android_example/platform_widgets/android/elevated_button.dart';
+import 'package:ios_android_example/platform_widgets/iOS/button.dart';
 import 'dart:io' show Platform;
 import 'switch_page.dart';
 
@@ -28,6 +30,13 @@ class _DatePageState extends State<DatePage> {
                 style: mainTextStyle,
               ),
               Platform.isIOS ? IOSDatePicker() : AndroidDatePicker(),
+              Platform.isIOS
+                  ? IOSButton(
+                      onPressed: () => nextPage(context, const SwitchPage()),
+                      label: 'next')
+                  : AndroidElevatedButton(
+                      onPressed: () => nextPage(context, const SwitchPage()),
+                      label: 'next')
             ],
           ),
         ),
