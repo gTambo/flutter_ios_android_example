@@ -26,7 +26,7 @@ class _SwitchPageState extends State<SwitchPage> {
         ),
         content: const Text(
           'You have finished the tasks. Start over?',
-          style: TextStyle(fontSize: 20),
+          style: mainTextStyle,
         ),
         actions: <CupertinoDialogAction>[
           CupertinoDialogAction(
@@ -44,6 +44,53 @@ class _SwitchPageState extends State<SwitchPage> {
           ),
         ],
       ),
+    );
+  }
+
+  Future<void> _showMaterialDialog() async {
+    return showDialog<void>(
+      context: context,
+      barrierDismissible: false, // user must tap button!
+      builder: (BuildContext context) {
+        return AlertDialog(
+          title: Text(
+            'Complete',
+            style: Theme.of(context).textTheme.titleLarge,
+          ),
+          content: const SingleChildScrollView(
+            child: ListBody(
+              children: <Widget>[
+                Text(
+                  'You have finished the tasks.',
+                  style: mainTextStyle,
+                ),
+                Text(
+                  'Start over??',
+                  style: mainTextStyle,
+                ),
+              ],
+            ),
+          ),
+          actions: <Widget>[
+            TextButton(
+              onPressed: () => Navigator.pop(context, 'Cancel'),
+              child: const Text(
+                'Cancel',
+                style: mainTextStyle,
+              ),
+            ),
+            TextButton(
+              child: const Text(
+                'Yes',
+                style: mainTextStyle,
+              ),
+              onPressed: () {
+                Navigator.pushNamed(context, 'text');
+              },
+            ),
+          ],
+        );
+      },
     );
   }
 
@@ -117,10 +164,7 @@ class _SwitchPageState extends State<SwitchPage> {
               ? IOSButton(
                   onPressed: () => _showAlertDialog(context), label: 'finish')
               : AndroidElevatedButton(
-                  onPressed: () {
-                    print('open material dialog');
-                  },
-                  label: 'finish'),
+                  onPressed: () => _showMaterialDialog(), label: 'finish'),
         ],
       )),
     );
