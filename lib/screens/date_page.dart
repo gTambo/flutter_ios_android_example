@@ -62,20 +62,6 @@ class _DatePageState extends State<DatePage> {
   }
 }
 
-// class AndroidDatePicker extends StatelessWidget {
-//   const AndroidDatePicker({
-//     super.key,
-//   });
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return DatePickerDialog(
-//         initialDate: DateTime.now(),
-//         firstDate: DateTime.now(),
-//         lastDate: DateTime.now().add(Duration(days: 7)));
-//   }
-// }
-
 class IOSDatePicker extends StatefulWidget {
   const IOSDatePicker({super.key, required this.date, required this.onChanged});
 

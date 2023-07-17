@@ -17,11 +17,6 @@ class TextPage extends StatefulWidget {
 
 class _TextPageState extends State<TextPage> {
   String inputText = '';
-  // void nextPage(Widget route) {
-  //   Navigator.of(context).push(MaterialPageRoute(builder: (context) {
-  //     return route;
-  //   }));
-  // }
 
   @override
   Widget build(BuildContext context) {
@@ -75,11 +70,15 @@ class _TextPageState extends State<TextPage> {
             Platform.isIOS
                 ? IOSButton(
                     label: 'NEXT',
-                    onPressed: () => nextPage(context, const DatePage()),
+                    onPressed: () {
+                      nextPage(context, const DatePage());
+                    },
                   )
                 : AndroidElevatedButton(
                     label: 'next',
-                    onPressed: () => nextPage(context, const DatePage()),
+                    onPressed: () {
+                      nextPage(context, const DatePage());
+                    },
                   ),
           ],
         ),
