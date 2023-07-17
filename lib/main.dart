@@ -14,9 +14,16 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData.dark().copyWith(
-        primaryColor: Colors.cyanAccent,
-        // scaffoldBackgroundColor: Colors.white,
-      ),
+          primaryColor: Colors.deepPurple,
+          textTheme: TextTheme(
+            displayMedium: TextStyle(
+              fontSize: 20,
+            ),
+            bodyMedium: TextStyle(fontSize: 20),
+          )
+          // scaffoldBackgroundColor: Colors.white,
+          ),
+      restorationScopeId: 'app',
       home: TextPage(),
       routes: {
         'text': (context) => TextPage(),
