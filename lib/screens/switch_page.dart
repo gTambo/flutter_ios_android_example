@@ -1,7 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:ios_android_example/constants/constants.dart';
+import 'package:ios_android_example/platform_widgets/android/elevated_button.dart';
 import 'dart:io' show Platform;
+
+import 'package:ios_android_example/platform_widgets/iOS/button.dart';
 
 class SwitchPage extends StatefulWidget {
   const SwitchPage({super.key});
@@ -13,6 +16,36 @@ class SwitchPage extends StatefulWidget {
 class _SwitchPageState extends State<SwitchPage> {
   bool switch1 = false;
   bool switch2 = false;
+  void _showAlertDialog(BuildContext context) {
+    showCupertinoModalPopup<void>(
+      context: context,
+      builder: (BuildContext context) => CupertinoAlertDialog(
+        title: Text(
+          'Complete',
+          style: Theme.of(context).textTheme.titleLarge,
+        ),
+        content: const Text(
+          'You have finished the tasks. Start over?',
+          style: TextStyle(fontSize: 20),
+        ),
+        actions: <CupertinoDialogAction>[
+          CupertinoDialogAction(
+            onPressed: () {
+              Navigator.pop(context);
+            },
+            child: const Text('No'),
+          ),
+          CupertinoDialogAction(
+            isDefaultAction: true,
+            onPressed: () {
+              Navigator.pushNamed(context, 'text');
+            },
+            child: const Text('Yes'),
+          ),
+        ],
+      ),
+    );
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -77,6 +110,17 @@ class _SwitchPageState extends State<SwitchPage> {
                     ),
             ],
           ),
+          SizedBox(
+            height: 25,
+          ),
+          Platform.isIOS
+              ? IOSButton(
+                  onPressed: () => _showAlertDialog(context), label: 'finish')
+              : AndroidElevatedButton(
+                  onPressed: () {
+                    print('open material dialog');
+                  },
+                  label: 'finish'),
         ],
       )),
     );
