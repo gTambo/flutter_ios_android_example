@@ -22,6 +22,7 @@ class _SwitchPageState extends State<SwitchPage> {
       ),
       body: Center(
           child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
         children: [
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -29,12 +30,27 @@ class _SwitchPageState extends State<SwitchPage> {
               Text('Switch 1'),
               Platform.isIOS
                   ? CupertinoSwitchExample(
-                      key: UniqueKey(),
+                      // key: UniqueKey(),
+                      switchValue: switch1,
+                      toggle: (bool newValue) {
+                        setState(() {
+                          switch1 = newValue ?? false;
+                        });
+                      },
                     )
                   : AndroidSwitch(
-                      key: UniqueKey(),
+                      // key: UniqueKey(),
+                      switchValue: switch1,
+                      toggle: (bool newValue) {
+                        setState(() {
+                          switch1 = newValue ?? false;
+                        });
+                      },
                     ),
             ],
+          ),
+          SizedBox(
+            height: 25,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
@@ -42,10 +58,22 @@ class _SwitchPageState extends State<SwitchPage> {
               Text('Switch 2'),
               Platform.isIOS
                   ? CupertinoSwitchExample(
-                      key: UniqueKey(),
+                      // key: UniqueKey(),
+                      switchValue: switch2,
+                      toggle: (bool newValue) {
+                        setState(() {
+                          switch2 = newValue ?? false;
+                        });
+                      },
                     )
                   : AndroidSwitch(
-                      key: UniqueKey(),
+                      // key: UniqueKey(),
+                      switchValue: switch2,
+                      toggle: (bool newValue) {
+                        setState(() {
+                          switch2 = newValue ?? false;
+                        });
+                      },
                     ),
             ],
           ),
@@ -92,23 +120,11 @@ class CupertinoSwitchExample extends StatefulWidget {
 class _CupertinoSwitchExampleState extends State<CupertinoSwitchExample> {
   @override
   Widget build(BuildContext context) {
-    return CupertinoPageScaffold(
-      navigationBar: const CupertinoNavigationBar(
-        middle: Text('CupertinoSwitch Sample'),
-      ),
-      child: Center(
-        child: CupertinoSwitch(
-          // This bool value toggles the switch.
-          value: switchValue,
-          activeColor: CupertinoColors.activeBlue,
-          onChanged: (bool? value) {
-            // This is called when the user toggles the switch.
-            setState(() {
-              switchValue = value ?? false;
-            });
-          },
-        ),
-      ),
+    return CupertinoSwitch(
+      // This bool value toggles the switch.
+      value: widget.switchValue,
+      activeColor: CupertinoColors.activeBlue,
+      onChanged: widget.toggle,
     );
   }
 }
