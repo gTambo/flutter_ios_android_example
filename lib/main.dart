@@ -14,17 +14,15 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       theme: ThemeData.dark().copyWith(
-          primaryColor: Colors.deepPurple,
-          textTheme: TextTheme(
-            displayMedium: TextStyle(
-              fontSize: 20,
-            ),
-            bodyMedium: TextStyle(fontSize: 20),
-          )
-          // scaffoldBackgroundColor: Colors.white,
+        primaryColor: Colors.deepPurple,
+        textTheme: const TextTheme(
+          displayMedium: TextStyle(
+            fontSize: 20,
           ),
-      restorationScopeId: 'app',
-      home: TextPage(),
+          bodyMedium: TextStyle(fontSize: 20),
+        ),
+      ),
+      home: const TextPage(),
       routes: {
         'text': (context) => TextPage(),
         'date': (context) => DatePage(),

@@ -27,7 +27,7 @@ class _TextPageState extends State<TextPage> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        child: Icon(Icons.add),
+        child: const Icon(Icons.add),
         onPressed: () {},
       ),
       body: Padding(
