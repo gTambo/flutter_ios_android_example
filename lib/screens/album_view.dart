@@ -3,7 +3,6 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 import 'package:ios_android_example/screens/switch_page.dart';
 import 'dart:io' show Platform;
-
 import '../constants/constants.dart';
 import '../platform_widgets/android/elevated_button.dart';
 import '../platform_widgets/iOS/button.dart';
@@ -28,8 +27,8 @@ class Album {
   }
 }
 
-Future<Album> fetchAlbum() async {
-  final response = await http
+Future<Album> fetchAlbum(http.Client client) async {
+  final response = await client
       .get(Uri.parse('https://jsonplaceholder.typicode.com/albums/1'));
   if (response.statusCode == 200) {
     return Album.fromJson(jsonDecode(response.body));
@@ -51,14 +50,14 @@ class _AlbumExampleState extends State<AlbumExample> {
   @override
   void initState() {
     super.initState();
-    futureAlbum = fetchAlbum();
+    futureAlbum = fetchAlbum(http.Client());
   }
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Album Example'),
+        title: const Text('Fetch Data Example'),
       ),
       body: Center(
         child: Column(
