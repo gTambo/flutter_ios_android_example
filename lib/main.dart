@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:ios_android_example/screens/album_view.dart';
 import 'package:ios_android_example/screens/date_page.dart';
 import 'screens/text_page.dart';
 import 'screens/switch_page.dart';
@@ -26,6 +27,7 @@ class MyApp extends StatelessWidget {
       routes: {
         'text': (context) => TextPage(),
         'date': (context) => DatePage(),
+        'album': (context) => AlbumExample(),
         'switch': (context) => SwitchPage(),
       },
     );

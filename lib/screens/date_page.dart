@@ -4,7 +4,7 @@ import 'package:ios_android_example/constants/constants.dart';
 import 'package:ios_android_example/platform_widgets/android/elevated_button.dart';
 import 'package:ios_android_example/platform_widgets/iOS/button.dart';
 import 'dart:io' show Platform;
-import 'switch_page.dart';
+import 'album_view.dart';
 
 class DatePage extends StatefulWidget {
   const DatePage({super.key});
@@ -19,43 +19,41 @@ class _DatePageState extends State<DatePage> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('Date Screen'),
+        title: const Text('Date Screen'),
       ),
-      body: Container(
-        child: SafeArea(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: [
-              Text(
-                'Date Page',
-                style: mainTextStyle,
-              ),
-              Platform.isIOS
-                  ? IOSDatePicker(
-                      date: date,
-                      onChanged: (value) {
-                        setState(() {
-                          date = value;
-                        });
-                      },
-                    )
-                  : _AndroidDatePicker(
-                      date: date,
-                      onChanged: (value) {
-                        setState(() {
-                          date = value;
-                        });
-                      },
-                    ),
-              Platform.isIOS
-                  ? IOSButton(
-                      onPressed: () => nextPage(context, const SwitchPage()),
-                      label: 'next')
-                  : AndroidElevatedButton(
-                      onPressed: () => nextPage(context, const SwitchPage()),
-                      label: 'next')
-            ],
-          ),
+      body: SafeArea(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.center,
+          children: [
+            const Text(
+              'Date Page',
+              style: mainTextStyle,
+            ),
+            Platform.isIOS
+                ? IOSDatePicker(
+                    date: date,
+                    onChanged: (value) {
+                      setState(() {
+                        date = value;
+                      });
+                    },
+                  )
+                : _AndroidDatePicker(
+                    date: date,
+                    onChanged: (value) {
+                      setState(() {
+                        date = value;
+                      });
+                    },
+                  ),
+            Platform.isIOS
+                ? IOSButton(
+                    onPressed: () => nextPage(context, const AlbumExample()),
+                    label: 'next')
+                : AndroidElevatedButton(
+                    onPressed: () => nextPage(context, const AlbumExample()),
+                    label: 'next')
+          ],
         ),
       ),
     );
