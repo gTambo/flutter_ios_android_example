@@ -25,10 +25,10 @@ class MyApp extends StatelessWidget {
       ),
       home: const TextPage(),
       routes: {
-        'text': (context) => TextPage(),
-        'date': (context) => DatePage(),
-        'album': (context) => AlbumExample(),
-        'switch': (context) => SwitchPage(),
+        'text': (context) => const TextPage(),
+        'date': (context) => const DatePage(),
+        'album': (context) => const AlbumExample(),
+        'switch': (context) => const SwitchPage(),
       },
     );
   }

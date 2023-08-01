@@ -51,11 +51,14 @@ class _TextPageState extends State<TextPage> {
                       inputText = newText;
                     });
                   })
-                : AndroidTextField((String newText) {
-                    setState(() {
-                      inputText = newText;
-                    });
-                  }),
+                : AndroidTextField(
+                    (String newText) {
+                      setState(() {
+                        inputText = newText;
+                      });
+                    },
+                    textFieldKey: const Key('android_text_field_0'),
+                  ),
             const SizedBox(
               height: 15,
             ),
@@ -88,13 +91,15 @@ class _TextPageState extends State<TextPage> {
 }
 
 class AndroidTextField extends StatelessWidget {
-  AndroidTextField(this.setText);
+  const AndroidTextField(this.setText, {required this.textFieldKey});
 
   final Function(String newText) setText;
+  final Key textFieldKey;
 
   @override
   Widget build(BuildContext context) {
     return TextField(
+      key: textFieldKey,
       textAlign: TextAlign.center,
       onChanged: (newText) {
         setText(newText);
