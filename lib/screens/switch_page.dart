@@ -107,7 +107,7 @@ class _SwitchPageState extends State<SwitchPage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Text('Switch 1'),
+              Text('Switch 1: $switch1'),
               Platform.isIOS
                   ? CupertinoSwitchExample(
                       // key: UniqueKey(),
@@ -135,7 +135,7 @@ class _SwitchPageState extends State<SwitchPage> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceEvenly,
             children: [
-              Text('Switch 2'),
+              Text('Switch 2: $switch2'),
               Platform.isIOS
                   ? CupertinoSwitchExample(
                       // key: UniqueKey(),
