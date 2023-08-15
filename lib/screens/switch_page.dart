@@ -110,7 +110,7 @@ class _SwitchPageState extends State<SwitchPage> {
               Text('Switch 1: $switch1'),
               Platform.isIOS
                   ? CupertinoSwitchExample(
-                      // key: UniqueKey(),
+                      key: const Key('switch1'),
                       switchValue: switch1,
                       toggle: (bool newValue) {
                         setState(() {
@@ -119,7 +119,7 @@ class _SwitchPageState extends State<SwitchPage> {
                       },
                     )
                   : AndroidSwitch(
-                      // key: UniqueKey(),
+                      key: const Key('switch1'),
                       switchValue: switch1,
                       toggle: (bool newValue) {
                         setState(() {
@@ -138,7 +138,7 @@ class _SwitchPageState extends State<SwitchPage> {
               Text('Switch 2: $switch2'),
               Platform.isIOS
                   ? CupertinoSwitchExample(
-                      // key: UniqueKey(),
+                      key: const Key('switch2'),
                       switchValue: switch2,
                       toggle: (bool newValue) {
                         setState(() {
@@ -147,7 +147,7 @@ class _SwitchPageState extends State<SwitchPage> {
                       },
                     )
                   : AndroidSwitch(
-                      // key: UniqueKey(),
+                      key: const Key('switch2'),
                       switchValue: switch2,
                       toggle: (bool newValue) {
                         setState(() {
@@ -157,7 +157,7 @@ class _SwitchPageState extends State<SwitchPage> {
                     ),
             ],
           ),
-          SizedBox(
+          const SizedBox(
             height: 25,
           ),
           Platform.isIOS

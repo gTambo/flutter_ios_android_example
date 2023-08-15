@@ -20,14 +20,12 @@ void main() {
       final switchWidget = find.byType(Switch).first;
       await tester.tap(switchWidget);
       await tester.pumpAndSettle();
-      expect(find.text('Switch 1: true'), findsOneWidget);
+      expect(tester.widget<Switch>(switchWidget).value, isTrue);
 
-      // Tap the switch again to toggle its state back
       await tester.tap(switchWidget);
-      await tester.pumpAndSettle(); // Wait for animations to complete
+      await tester.pumpAndSettle();
 
-      // Verify the reverted state text
-      expect(find.text('Switch 1: false'), findsOneWidget);
+      expect(tester.widget<Switch>(switchWidget).value, isFalse);
     });
   });
 }
